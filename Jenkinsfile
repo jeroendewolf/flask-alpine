@@ -13,7 +13,7 @@ node {
     env.BUILDIMG=imageName
 
     stage "Build"
-    
+        sh "minikube docker-env"
         sh "docker build -t ${imageName} -f Dockerfile"
     
     stage "Push"
