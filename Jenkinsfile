@@ -17,5 +17,5 @@ node {
     stage "Push"
         sh "docker push ${imageName}"
     stage "Deploy"
-        sh "kubectl apply -f python-deploy.yaml"
+        sh "kubectl apply -f ./python-deploy.yaml"
 }
