@@ -21,6 +21,6 @@ node {
 
     stage "Deploy"
 
-        sh "sed 's#127.0.0.1:30400/hello-python:latest#'$BUILDIMG'#' python-deploy.yaml | kubectl apply -f -"
+        sh "sed 's#127.0.0.1:30400/hello-python:v1#'$BUILDIMG'#' python-deploy.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-python"
 }
