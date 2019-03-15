@@ -17,6 +17,6 @@ node {
     stage "Push"
         sh "docker push ${imageName}"
     stage "Deploy"
-        kubernetesDeploy configs: "python-deploy.yaml" , kubeconfigId: 'hello-python_kubeconfig'
+        kubernetesDeploy configs: "python-deploy.yaml" , kubeconfigId: 'hello-python'
 }
         
