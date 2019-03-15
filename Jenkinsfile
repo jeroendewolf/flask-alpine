@@ -19,8 +19,8 @@ node {
     stage "Deploy"
         cd /yaml_gen
         sh "sed 's#__IMAGE__#'$BUILDIMG'#' python-deploy.yaml"
-        cd ..
-        kubernetesDeploy configs: "/yaml_gen/*.yaml" , kubeconfigId: 'minikube'
+        //cd ..
+        kubernetesDeploy configs: "*.yaml" , kubeconfigId: 'minikube'
 
 }
         
