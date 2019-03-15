@@ -18,4 +18,5 @@ node {
         sh "docker push ${imageName}"
     stage "Deploy"
         sh "sed 's#__IMAGE__#'$BUILDIMG'#' python-deploy.yaml | kubectl apply -f -"
+}
         
