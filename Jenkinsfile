@@ -17,7 +17,7 @@ node {
     stage "Push"
         sh "docker push ${imageName}"
     stage "Deploy"
-        kubectl apply -f /yaml_gen/service.yaml
+        kubectl apply -f deploy-python.yaml
         //kubernetesDeploy configs: "yaml_gen/*.yaml" , kubeconfigId: 'hello-python'
 
 }
