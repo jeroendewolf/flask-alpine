@@ -14,15 +14,9 @@ node {
 
     stage "Build"
         sh "docker build -t ${imageName} ."
-    
     stage "Push"
-
         sh "docker push ${imageName}"
-
     stage "Deploy"
-
-        sh "sed 's#'$BUILDIMG'#' python-deploy.yaml | kubectl apply -f -"
-    
         sh "sed 's#__IMAGE__#'$BUILDIMG'#' python-deploy.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-python"
 }
