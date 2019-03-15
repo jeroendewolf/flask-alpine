@@ -11,7 +11,7 @@ spec:
   selector:
     app: hello-python
     tier: hello-python
-  type: NodePort
+  type: NodePort 
 
 ---
 apiVersion: extensions/v1beta1
