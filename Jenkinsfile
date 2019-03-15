@@ -19,7 +19,15 @@ node {
     stage "Deploy"
         //sh "sed 's#__IMAGE__#'$BUILDIMG'#' python-deploy.yaml"
         //cd ..
-        kubernetesDeploy configs: "python-deploy.yaml" , kubeconfigId: 'hello-python_kubeconfig'
+        //kubernetesDeploy configs: "python-deploy.yaml" , kubeconfigId: 'hello-python_kubeconfig'
+    kubernetesDeploy(
+                                credentialsType: 'KubeConfig',
+                                kubeConfig: [path: '/var/lib/jenkins_home/.kube/config'],
+                                configs: 'python-deploy.yaml',
+                                dockerCredentials: [
+                                    [credentialsId: 'hello-python_kubeconfig']
+                                ]
+    )
 
 }
         
