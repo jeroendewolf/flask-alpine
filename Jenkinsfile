@@ -17,7 +17,7 @@ node {
     stage "Push"
         sh "docker push ${imageName}"
     stage "Deploy"
-        sh "sed 's#__IMAGE__#'$BUILDIMG'#'.yaml"
+        sh "sed 's#__IMAGE__#'$BUILDIMG'#' .yaml"
         //cd ..
         kubernetesDeploy configs: "$BUILDIMG.yaml" , kubeconfigId: 'minikube'
 
