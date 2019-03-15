@@ -21,12 +21,10 @@ node {
         //cd ..
         //kubernetesDeploy configs: "python-deploy.yaml" , kubeconfigId: 'hello-python_kubeconfig'
     kubernetesDeploy(
-                                credentialsType: 'KubeConfig',
-                                kubeConfig: [path: '/var/lib/jenkins_home/.kube/config'],
-                                configs: 'python-deploy.yaml',
-                                dockerCredentials:[
-                                  credentialsId: 'hello-python_kubeconfig'
-                                ]
+        credentialsType: 'KubeConfig',
+        kubeConfig: [path: '/var/lib/jenkins_home/.kube/config'],
+        configs: 'python-deploy.yaml',
+        dockerCredentials:[credentialsId: 'hello-python_kubeconfig']
     )
 
 }
