@@ -1,6 +1,6 @@
 node {
 
-    scm
+    checkout scm
 
     env.DOCKER_API_VERSION="1.23"
     
