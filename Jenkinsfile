@@ -24,9 +24,7 @@ node {
         credentialsType: 'KubeConfig',
         kubeConfig: [path: '/var/lib/jenkins_home/.kube/config'],
         configs: 'python-deploy.yaml',
-        dockerCredentials:[
-            [credentialsId: 'hello-python'],
-        ]
+        registryCredentialsId: 'hello-python'
     )
 
 }
