@@ -11,6 +11,9 @@ node {
     appName = "hello-python"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}${tag}"
+    echo imageName
+    echo tag
+    echo ${tag}
     env.BUILDIMG=imageName
     env.build_tag=tag
 
