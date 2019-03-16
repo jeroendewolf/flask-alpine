@@ -22,7 +22,7 @@ metadata:
     app: hello-python
 spec:
   strategy:
-    type: Create
+    type: Recreate
   template:
     metadata:
       labels:
