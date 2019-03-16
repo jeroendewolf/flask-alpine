@@ -18,8 +18,8 @@ node {
         sh "docker push ${imageName}"
     stage "Deploy"
         //sh "kubectl apply -f python-deploy.yaml"
-        //sh "kubectl apply -f ./python-deploy.yaml"        
-       kubernetesDeploy configs: "yaml_gen/*.yaml" , kubeconfigId: 'hello-python'
+        sh "kubectl apply -f ./python-deploy.yaml"        
+        // kubernetesDeploy configs: "yaml_gen/*.yaml" , kubeconfigId: 'hello-python'
         //kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
 }
         
