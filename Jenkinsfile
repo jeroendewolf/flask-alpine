@@ -9,13 +9,12 @@ node {
     appName = "hello-python:"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}${tag}"
-    sh "export TAG=${tag}"
   
     echo imageName
     echo tag
 
     env.BUILDIMG=imageName
-    //env.build_tag=tag
+    env.BUILD_TAG=tag
 
     stage "Build"
         sh "docker build -t ${imageName} ."
