@@ -30,7 +30,7 @@ spec:
         tier: hello-python
     spec:
       containers:
-      - image: 127.0.0.1:30400/hello-python:$(build_tag)
+      - image: 127.0.0.1:30400/hello-python:$(env.build_tag)
         name: hello-python
         ports:
         - containerPort: 80
