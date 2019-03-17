@@ -21,8 +21,8 @@ node {
     stage "Push"
         sh "docker push ${imageName}"
     stage "Deploy"
-        sh "kubectl delete -f python-deploy.yaml"
+        //sh "kubectl delete -f python-deploy.yaml"
         sh "sed 's#127.0.0.1:30400/hello-python:bla#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml"
-        sh "kubectl create -f python-deploy.yaml"
+        sh "kubectl apply -f python-deploy.yaml"
 }
         
