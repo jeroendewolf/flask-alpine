@@ -16,6 +16,19 @@ node {
     env.BUILDIMG=imageName
     env.BUILD_TAG=tag
 
+    stage('SonarQube') {
+        environment {
+            scannerHome=tool 'SonarQubeScanner'
+        }
+        steps:
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQuality abortPipeline: true
+        }
+    }
+    
     stage "Build"
         sh "docker build -t ${imageName} ."
     stage "Push"
