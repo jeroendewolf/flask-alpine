@@ -1,23 +1,26 @@
 node {
-
-    checkout scm
     
-    env.DOCKER_API_VERSION="1.23" 
+    stage('Checkout SCM') {
     
-    sh "git rev-parse --short HEAD > commit-id"
-    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appName = "hello-python:"
-    registryHost = "127.0.0.1:30400/"
-    imageName = "${registryHost}${appName}${tag}"
+        checkout scm
+    
+        env.DOCKER_API_VERSION="1.23" 
+    
+        sh "git rev-parse --short HEAD > commit-id"
+        tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+        appName = "hello-python:"
+        registryHost = "127.0.0.1:30400/"
+        imageName = "${registryHost}${appName}${tag}"
   
-    echo imageName
-    echo tag
+        echo imageName
+        echo tag
 
-    env.BUILDIMG=imageName
-    env.BUILD_TAG=tag
+        env.BUILDIMG=imageName
+        env.BUILD_TAG=tag
+    }
     
     stage('SonarQube') {
-        // requires SonarQube Scanner 2.8+
+       
         def scannerHome = tool 'scanner';
         
         withSonarQubeEnv('SonarQube') {
