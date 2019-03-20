@@ -16,18 +16,18 @@ node {
     env.BUILDIMG=imageName
     env.BUILD_TAG=tag
 
-    stage('SonarQube') {
-        environment {
-            scannerHome=tool 'SonarQubeScanner'
-        }
-        steps:
-            withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQuality abortPipeline: true
-        }
+node {
+  stage('SCM') {
+    git 'https://github.com/jeroendewolf/pythonwebapp.git'
+  }
+  stage('SonarQube analysis') {
+    // requires SonarQube Scanner 2.8+
+    def scannerHome = tool 'SonarQube Scanner 2.8';
+    withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
     }
+  }
+}
     
     stage "Build"
         sh "docker build -t ${imageName} ."
