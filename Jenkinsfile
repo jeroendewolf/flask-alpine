@@ -15,27 +15,24 @@ node {
 
     env.BUILDIMG=imageName
     env.BUILD_TAG=tag
-
-node {
-  stage('SCM') {
-    git 'https://github.com/jeroendewolf/pythonwebapp.git'
-  }
-  stage('SonarQube analysis') {
-    // requires SonarQube Scanner 2.8+
-    def scannerHome = tool 'scanner';
-    withSonarQubeEnv('SonarQube') {
-      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
-    }
-  }
-}
     
-    stage "Build"
+    stage('SonarQube') {
+        // requires SonarQube Scanner 2.8+
+        def scannerHome = tool 'scanner';
+        
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
+        }
+    }
+    
+    stage ('Build')
         sh "docker build -t ${imageName} ."
-    stage "Push"
+    
+    stage ('Push')
         sh "docker push ${imageName}"
-    stage "Deploy"
-        //sh "kubectl delete -f python-deploy.yaml"
+    
+    stage ('Deploy')
         sh "sed 's#127.0.0.1:30400/hello-python:bla#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
-        //sh "kubectl apply -f python-deploy.yaml"
+
 }
         
