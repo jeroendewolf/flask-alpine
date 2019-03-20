@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 5000
   selector:
     app: hello-python
     tier: hello-python
