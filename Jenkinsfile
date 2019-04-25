@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh 'python test_app.py'
+        sh "python test_app.py"
     }
     
     stage ('Push') {
