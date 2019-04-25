@@ -33,7 +33,9 @@ node {
     }
     
     stage('Test') {
-        sh 'test_app.py'
+        ''' source activate ${BUILD_TAG}
+        python -m unittest --verbose --junit-xml test-reports/results.xml
+        '''
     }
     
     stage ('Push') {
