@@ -2,6 +2,10 @@ import app
 import unittest
 
 class TestApp:
+  def setUp(self):
+    app.app.Testing=True
+    self.app=app.app.test_client()
+    
   def test_hello(self):
     rv=self.app.get('/')
     self.assertEqual(rv.data, b'Hello World!')
