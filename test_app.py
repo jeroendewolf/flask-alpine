@@ -1,5 +1,5 @@
 import app
 
 class TestApp:
-  def testHello(self):
-  assert 'Hello World!' == app.hello()
+  def test_hello(self):
+    assert 'Hello World!' == app.hello()
