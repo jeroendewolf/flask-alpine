@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-import app
+from app import hello
 
 
 class TestApp(unittest.TestCase):
