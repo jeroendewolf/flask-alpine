@@ -28,14 +28,19 @@ node {
         }
     }
     
-    stage ('Build')
+    stage ('Build') {
         sh "docker build -t ${imageName} ."
+    }
     
-    stage ('Push')
+    stage('Test') {
+        sh 'test_app.py'
+    }
+    
+    stage ('Push') {
         sh "docker push ${imageName}"
-    
-    stage ('Deploy')
+    }
+    stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:bla#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
-
+    }
 }
         
