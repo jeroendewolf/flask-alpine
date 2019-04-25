@@ -1,5 +1,3 @@
 flask
 redis
-flake8
-pytest
-pytest-cov
+nose
