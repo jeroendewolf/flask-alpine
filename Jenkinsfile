@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "pip install flask"
+        sh "pip3 install flask"
         sh "python test_app.py"
     }
     
