@@ -33,8 +33,8 @@ node {
     }
     
     stage('Test') {
-        withPythonEnv('/usr/bin/python3.5') {
-            sh "pip install virtualenvwrapper"
+        withPythonEnv('/usr/bin/python2.7') {
+            sh "python -v"
            
         }
     }
