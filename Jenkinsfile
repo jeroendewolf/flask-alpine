@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "sudo aptitude install python-pip python-virtualenv flask"
+        sh "sudo aptitude install flask"
     }
     
     stage ('Push') {
