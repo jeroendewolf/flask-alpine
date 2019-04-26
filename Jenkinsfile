@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        virtualenv --python=/usr/bin/python2.7 --no-site-packages . && . ./bin/activate && pip install -r requirements.txt
+        sh "virtualenv --python=/usr/bin/python2.7 --no-site-packages . && . ./bin/activate && pip install -r requirements.txt"
     }
     
     stage ('Push') {
