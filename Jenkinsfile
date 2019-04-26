@@ -33,8 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "pip3 install flask"
-        sh "python test_app.py"
+        virtualenv --python=/usr/bin/python2.7 --no-site-packages . && . ./bin/activate && pip install -r requirements.txt
     }
     
     stage ('Push') {
