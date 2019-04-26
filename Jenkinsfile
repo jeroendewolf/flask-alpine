@@ -34,8 +34,8 @@ node {
     
     stage('Test') {
         withPythonEnv('/usr/bin/python3.5') {
-            sh "python install pip"
-            sh "python test_app" 
+            sh "pip install virtualenvwrapper"
+           
         }
     }
     
