@@ -33,7 +33,6 @@ node {
     }
     
     stage('Test') {
-        sh "$ venv/scripts/activate"
         sh "pip install flask"
         sh "python test_app.py"
     }
