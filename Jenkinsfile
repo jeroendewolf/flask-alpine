@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "sudo aptitude install flask"
+        sh "aptitude install flask"
     }
     
     stage ('Push') {
