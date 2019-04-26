@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "virtualenv --python=/usr/bin/python2.7 --no-site-packages . && . ./bin/activate && pip install -r requirements.txt"
+        sh "sudo aptitude install python-pip python-virtualenv flask"
     }
     
     stage ('Push') {
