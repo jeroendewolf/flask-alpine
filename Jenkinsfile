@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "sudo apt-get --assume-yes install flask"
+        sh "sudo aptitude install python-pip"
     }
     
     stage ('Push') {
