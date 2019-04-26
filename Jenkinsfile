@@ -33,7 +33,8 @@ node {
     }
     
     stage('Test') {
-        withPythonEnv('/home/user/managed_virtualenv/') {
+        withPythonEnv('/usr/bin/python3.5') {
+            sh "python install pip"
             sh "python test_app" 
         }
     }
