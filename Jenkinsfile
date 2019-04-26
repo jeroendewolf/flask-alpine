@@ -33,7 +33,7 @@ node {
     }
     
     stage('Test') {
-        sh "apt-get install flask"
+        sh "sudo apt-get install flask"
     }
     
     stage ('Push') {
