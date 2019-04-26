@@ -33,7 +33,11 @@ node {
     }
     
     stage('Test') {
-        sh "sudo aptitude install python-pip"
+        withPythonEnv('python') {
+        sh "python test_app" 
+    }
+}
+        
     }
     
     stage ('Push') {
