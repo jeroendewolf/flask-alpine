@@ -35,9 +35,7 @@ node {
     stage('Test') {
         withPythonEnv('python') {
         sh "python test_app" 
-    }
-}
-        
+        }
     }
     
     stage ('Push') {
