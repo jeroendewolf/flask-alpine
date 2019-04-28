@@ -33,10 +33,7 @@ node {
     }
     
     stage('Test') {
-        withPythonEnv('/usr/bin/python2.7') {
-            
-           
-        }
+
     }
     
     stage ('Push') {
