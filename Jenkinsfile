@@ -34,7 +34,7 @@ node {
     
     stage('Test') {
         withPythonEnv('/usr/bin/python2.7') {
-            sh "python -v"
+            #sh "python -v"
            
         }
     }
