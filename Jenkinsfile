@@ -25,7 +25,6 @@ node {
     
     docker.image('python:3-alpine').inside {
         stage('Test') {
-            sh 'pip install --upgrade pip'
     	    sh 'pip3 install -r requirements.txt'
             sh 'python test-app.py'
         }
