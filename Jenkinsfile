@@ -1,4 +1,5 @@
 node {
+
     
     stage('Checkout SCM') {
     
@@ -12,6 +13,7 @@ node {
         env.BUILD_TAG=tag
     }
     
+    
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -21,13 +23,19 @@ node {
         }
     }
     
+    docker.image('python:3-alpine').inside {
+        stage('Test') {
+            sh 'pip install --upgrade pip'
+    	    sh 'pip3 install -r requirements.txt'
+            sh 'python test-app.py'
+        }
+    }
+
     stage ('Build') {
         sh "docker build -t ${imageName} ."
     }
     
-    stage('Test') {
 
-    }
     
     stage ('Push') {
         sh "docker push ${imageName}"
