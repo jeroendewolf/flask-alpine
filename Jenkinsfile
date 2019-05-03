@@ -27,7 +27,7 @@ node {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
-            sh 'pytest --junitxml=pytest-report.xml'
+            sh 'pyton test_app.py'
         }
     }
 
