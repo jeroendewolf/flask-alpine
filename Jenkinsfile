@@ -25,7 +25,7 @@ node {
     
     docker.image('python:3-alpine').inside {
         stage('Test') {
-            sh 'pip install --upgrade pip'
+            sh 'sudo -H pip install --upgrade pip'
             /*sh 'python test-app.py'*/
             sh 'pytest --junitxml=pytest-report.xml'
         }
