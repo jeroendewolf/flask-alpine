@@ -23,7 +23,7 @@ node {
         }
     }
     
-    docker.image('python:3-alpine').inside {
+    docker.image('frolvlad/alpine-python3').inside {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
