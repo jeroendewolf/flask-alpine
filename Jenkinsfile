@@ -31,7 +31,7 @@ node {
             /* sh 'python test-app.py' */
             /* sh 'pip install -r requirements.txt' */
             sh 'python test_app.py'
-            sh 'docker rmi 
+           
         }
     }
     stage('Rename image') {
