@@ -35,7 +35,7 @@ node {
         }
     }
     stage('Rename image') {
-        sh "docker tag hello/python:1 $imageName"
+        sh "docker tag hello/python:1 ${imageName}"
     }
 /*
     stage ('Push') {
