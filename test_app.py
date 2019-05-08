@@ -13,7 +13,10 @@ class TestApp(unittest.TestCase):
   def test_hello_serv(self):
     rv = self.app.get('/')
     self.assertEqual(rv.status, '200 OK')
-    self.assertEqual(rv.data, b'Hello World!\n')
+    self.assertEqual(rv.data, b'Hello World!')
  
 if __name__ == '__main__':
+  import xmlrunner
+  runner = xmlrunner.XMLTestRunner(output='test-reports')
+  unittest.main(testRunner=runner)
   unittest.main()
