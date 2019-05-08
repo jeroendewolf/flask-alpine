@@ -27,7 +27,7 @@ node {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
-            sh 'pip3 install --user -r requirements.txt'
+            sh 'pip install --user -r requirements.txt'
             sh 'python test_app.py'
         }
     }
