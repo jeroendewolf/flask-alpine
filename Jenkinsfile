@@ -1,6 +1,4 @@
-node {
-
-    
+node {  
     stage('Checkout SCM') {
     
         checkout scm
@@ -8,7 +6,7 @@ node {
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
         appname = "hello-python:"
         registryHost = "127.0.0.1:30400/"
-        imageName = "${registryHost}${appname}${tag}"
+        env.imageName = "${registryHost}${appname}${tag}"
 
         env.BUILD_TAG=tag
     }
@@ -33,15 +31,19 @@ node {
             /* sh 'python test-app.py' */
             /* sh 'pip install -r requirements.txt' */
             sh 'python test_app.py'
+            sh 'docker rmi 
         }
     }
-    /*
+    stage('Rename image') {
+        sh "docker tag hello/python:1 $imageName"
+    }
+/*
     stage ('Push') {
         sh "docker push ${imageName}"
     }
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
     }
-    */
+*/    
 }
         
