@@ -23,10 +23,11 @@ node {
     }
     */
     stage ('Build') {
-        sh "docker build -t aa/${appname}${tag} ."
+        /*sh "docker build -t aa/${appname}${tag} ."*/
+        sh docker build -t hello/python:1 .
     } 
     
-    docker.image('aa/${appname}${tag}').inside {
+    docker.image('hello/python:1').inside {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
