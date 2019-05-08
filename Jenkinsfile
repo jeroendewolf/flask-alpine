@@ -47,7 +47,7 @@ node {
         sh "kubectl rollout status deployment/hello-python"
     }  
     stage ('Clean') {
-        sh "curl -v -X DELETE http://192.168.99.104:30400/hello-python"
+        sh "curl -v -X DELETE http://127.0.0.1:30400/hello-python"
     }
 }
         
