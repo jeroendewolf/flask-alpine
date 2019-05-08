@@ -26,7 +26,7 @@ node {
         sh "docker build -t ${imageName} ."
     } 
     
-    docker.image(${imageName}:tag).inside {
+    docker.image('${imageName}:tag').inside {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
