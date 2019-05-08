@@ -29,7 +29,9 @@ node {
         stage('Test') {
             sh 'python test_app.py'
             sh 'pytest --junitxml=reports/coverage.xml' 
+            /*junit 'reports/*.xml'*/
             junit 'reports/*.xml'
+            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
            
         }
     }
