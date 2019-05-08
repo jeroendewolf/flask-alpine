@@ -12,7 +12,7 @@ class TestApp(unittest.TestCase):
     
   def test_hello_serv(self):
     rv = self.app.get('/')
-    self.assertEqual(rv.status, '200-OK')
+    self.assertEqual(rv.status, '200 OK')
     self.assertEqual(rv.data, b'Hello World!\n')
  
 if __name__ == '__main__':
