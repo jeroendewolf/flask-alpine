@@ -20,12 +20,11 @@ node {
         stage('Test') {
             /* sh 'python test_app.py'*/
             sh 'coverage run test_app.py'
-            cobertura-clover-transform coverage.xml -o coverage.xml
-            
+
             sh 'pytest --junitxml=reports/results.xml'
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             junit 'reports/*.xml'
-            /*cobertura 'coverage.xml'*/
+            cobertura coberturaReportFile: 'coverage.xml'
         }
     }
        
