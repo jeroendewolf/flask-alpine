@@ -31,7 +31,7 @@ node {
             /* sh 'python test-app.py' */
             /* sh 'pip install -r requirements.txt' */
             sh 'python test_app.py'
-            sh 'python run -m pytest --junitxml=test-reports/coverage.xml' 
+            sh 'pytest --junitxml=test-reports/coverage.xml' 
             junit 'test-reports/*.xml'
            
         }
