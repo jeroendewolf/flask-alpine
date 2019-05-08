@@ -18,11 +18,8 @@ node {
     
     docker.image('hello/python:1').inside {
         stage('Test') {
-            /* sh 'python test_app.py'*/
             sh 'coverage run test_app.py'
-
             sh 'pytest --junitxml=reports/results.xml'
-            /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             junit 'reports/*.xml'
             cobertura coberturaReportFile: 'coverage.xml'
         }
@@ -39,15 +36,15 @@ node {
 
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
+       
     }
-
-/*
+    
     stage ('Push') {
         sh "docker push ${imageName}"
+        sh "docker rmi -f $BUILD-TAG"
     }
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
-    }
-*/    
+    }  
 }
         
