@@ -6,7 +6,7 @@ node {
         checkout scm
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-        appName = "hello-python:"
+        appname = "hello-python:"
         registryHost = "127.0.0.1:30400/"
         imageName = "${registryHost}${appName}${tag}"
 
@@ -23,10 +23,10 @@ node {
     }
     */
     stage ('Build') {
-        sh "docker build -t aa/${appName}${tag} ."
+        sh "docker build -t aa/${appname}${tag} ."
     } 
     
-    docker.image('aa/${appName}${tag}').inside {
+    docker.image('aa/${appname}${tag}').inside {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
