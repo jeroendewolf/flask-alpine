@@ -13,7 +13,6 @@ node {
         env.BUILD_TAG=tag
     }
     
-    
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -23,7 +22,11 @@ node {
         }
     }
     
-    docker.image('frolvlad/alpine-python3').inside {
+    stage ('Build') {
+        sh "docker build -t ${imageName} ."
+    } 
+    
+    docker.image(${imageName}:tag).inside {
         stage('Test') {
             /* sh 'sudo -H pip install --upgrade pip' */
             /* sh 'python test-app.py' */
@@ -31,13 +34,7 @@ node {
             sh 'python test_app.py'
         }
     }
-
-    stage ('Build') {
-        sh "docker build -t ${imageName} ."
-    }
-    
-
-    
+     
     stage ('Push') {
         sh "docker push ${imageName}"
     }
