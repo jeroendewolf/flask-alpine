@@ -31,17 +31,14 @@ node {
             /* sh 'python test-app.py' */
             /* sh 'pip install -r requirements.txt' */
             sh 'python test_app.py'
+            sh "junit \'test-reports/*.xml\'"
            
         }
     }
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
     }
-    post { 
-        always { 
-            echo 'I will always say Hello again!'
-        }
-    }
+
 /*
     stage ('Push') {
         sh "docker push ${imageName}"
