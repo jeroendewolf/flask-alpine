@@ -37,6 +37,11 @@ node {
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
     }
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }
 /*
     stage ('Push') {
         sh "docker push ${imageName}"
