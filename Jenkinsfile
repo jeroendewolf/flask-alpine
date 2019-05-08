@@ -23,8 +23,7 @@ node {
             
             sh 'pytest --junitxml=reports/results.xml'
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
-            /*junit 'reports/*.xml'*/
-            junit './reports/*.xml'
+            junit 'reports/*.xml'
             /*cobertura 'coverage.xml'*/
         }
     }
