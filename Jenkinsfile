@@ -10,36 +10,28 @@ node {
 
         env.BUILD_TAG=tag
     }
-    
-    stage ('Coverage') {
-        /*sh 'rm -r ./test-reports'*/
-        /*sh 'rm -r ./reports'*/
-        sh 'python -m coverage xml -o ./reports/coverage.xml'
-    }
-    
-    stage('SonarQube') {
-       
-        def scannerHome = tool 'scanner';
-        
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
-        }
-    }
-
 
     stage ('Build') {
         /*sh "docker build -t aa/${appname}${tag} ."*/
         sh "docker build -t hello/python:1 ."
     } 
     
-    
     docker.image('hello/python:1').inside {
         stage('Test') {
             sh 'python test_app.py'
             /* sh 'pytest --junitxml=reports/coverage.xml' */
-            sh 'python -m coverage xml -o ./reports/coverage.xml'
+            /* sh 'python -m coverage xml -o ./reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
-            junit 'reports/*.xml'         
+            /* junit 'reports/*.xml'*/         
+        }
+    }
+       
+    stage('SonarQube') {
+       
+        def scannerHome = tool 'scanner';
+        
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
     }
     stage ("Extract test results") {
