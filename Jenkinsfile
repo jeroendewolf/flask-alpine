@@ -31,9 +31,18 @@ node {
             sh 'pytest --junitxml=reports/coverage.xml' 
             /*junit 'reports/*.xml'*/
             junit 'reports/*.xml'
-            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+            /*step([$class: 'CoberturaPublisher', 
+            autoUpdateHealth: false, 
+            autoUpdateStability: false, 
+            coberturaReportFile: '**/coverage.xml', 
+            failUnhealthy: false, 
+                failUnstable: false, 
+                maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])*/
            
         }
+    }
+    stage ("Extract test results") {
+        cobertura coberturaReportFile: 'reports/coverage.xml'
     }
 
     stage('Rename image') {
