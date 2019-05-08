@@ -25,7 +25,7 @@ node {
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
             junit 'reports/*.xml'
-            cobertura 'coverage.xml'
+            /*cobertura 'coverage.xml'*/
         }
     }
        
