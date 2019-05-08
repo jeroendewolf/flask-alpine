@@ -12,7 +12,6 @@ node {
     }
 
     stage ('Build') {
-        /*sh "docker build -t aa/${appname}${tag} ."*/
         sh "docker build -t hello/python:1 ."
     } 
     
@@ -41,7 +40,7 @@ node {
     
     stage ('Push') {
         sh "docker push ${imageName}"
-        sh "docker rmi -f $BUILD-TAG"
+        sh "docker rmi -f hello/python:1"
     }
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
