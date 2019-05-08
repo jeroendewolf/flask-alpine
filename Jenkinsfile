@@ -14,6 +14,7 @@ node {
     stage ('Clean') {
         sh 'rm -r ./test-reports'
         sh 'rm -r ./reports'
+        sh 'python -m coverage xml -o ./reports/coverage.xml'
     }
     
     stage('SonarQube') {
