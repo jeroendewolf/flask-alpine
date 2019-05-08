@@ -10,7 +10,7 @@ node {
 
         env.BUILD_TAG=tag
     }
-    /*
+    
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -19,7 +19,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
     }
-    */
+
     stage ('Build') {
         /*sh "docker build -t aa/${appname}${tag} ."*/
         sh "docker build -t hello/python:1 ."
@@ -27,23 +27,13 @@ node {
     
     docker.image('hello/python:1').inside {
         stage('Test') {
-            /* sh 'sudo -H pip install --upgrade pip' */
-            /* sh 'python test-app.py' */
-            /* sh 'pip install -r requirements.txt' */
             sh 'python test_app.py'
             sh 'pytest --junitxml=reports/coverage.xml' 
             junit 'reports/*.xml'
            
         }
     }
-    stage('SonarQube') {
-       
-        def scannerHome = tool 'scanner';
-        
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
-        }
-    }
+
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
     }
