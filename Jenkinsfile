@@ -21,10 +21,10 @@ node {
             /* sh 'python test_app.py'*/
             sh 'coverage run test_app.py'
             
-            /* sh 'pytest --junitxml=reports/coverage.xml' */
+            sh 'pytest --junitxml=reports/results.xml'
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
-            junit './*.xml'
+            junit './reports/*.xml'
             /*cobertura 'coverage.xml'*/
         }
     }
