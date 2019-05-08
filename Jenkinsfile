@@ -19,6 +19,7 @@ node {
     docker.image('hello/python:1').inside {
         stage('Test') {
             sh 'python test_app.py'
+            sh 'coverage run test_app.py'
             /* sh 'pytest --junitxml=reports/coverage.xml' */
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
@@ -35,7 +36,7 @@ node {
         }
     }
     stage ("Extract test results") {
-        cobertura coberturaReportFile: 'reports/coverage.xml'
+        cobertura 
     }
 
     stage('Rename image') {
