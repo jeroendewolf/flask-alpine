@@ -35,6 +35,14 @@ node {
            
         }
     }
+    stage('SonarQube') {
+       
+        def scannerHome = tool 'scanner';
+        
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
+        }
+    }
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
     }
