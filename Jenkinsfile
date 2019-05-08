@@ -20,6 +20,7 @@ node {
         stage('Test') {
             sh 'python test_app.py'
             sh 'coverage run test_app.py'
+            sh 'coverage report'
             /* sh 'pytest --junitxml=reports/coverage.xml' */
             /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
@@ -34,9 +35,6 @@ node {
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
-    }
-    stage ("Extract test results") {
-        cobertura 
     }
 
     stage('Rename image') {
