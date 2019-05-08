@@ -20,7 +20,7 @@ node {
         stage('Test') {
             sh 'python test_app.py'
             /* sh 'pytest --junitxml=reports/coverage.xml' */
-            sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'
+            /*sh 'python -m coverage xml -o ./coverage-reports/coverage.xml'*/
             /*junit 'reports/*.xml'*/
             /* junit 'reports/*.xml'*/         
         }
