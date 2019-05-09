@@ -14,37 +14,26 @@ node {
     stage ('Build') {
         sh "docker build -t hello/python:1 ."
     }
+        
+    docker.image('hello/python:1').inside {
+        stage('Test') {
+            sh 'coverage run test_app.py'
+            sh 'pytest --junitxml=reports/results.xml'
+            junit 'reports/*.xml'
+            cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
+        }
+    }
     
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
-        sh 'coverage run test_app.py'
-        cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
+        
         withSonarQubeEnv('SonarQube') {
             
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
     }
 
-    
-    docker.image('hello/python:1').inside {
-        stage('Test') {
-            /*sh "rm -f ./coverage.xml"*/
-            /* sh 'coverage run test_app.py' */
-            sh 'pytest --junitxml=reports/results.xml'
-            junit 'reports/*.xml'
-            /*cobertura coberturaReportFile: 'coverage-reports/coverage.xml'*/
-        }
-    }
-       /*
-    stage('SonarQube') {
-       
-        def scannerHome = tool 'scanner';
-        
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
-        }
-    } */
 
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
