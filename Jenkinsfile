@@ -13,7 +13,17 @@ node {
 
     stage ('Build') {
         sh "docker build -t hello/python:1 ."
-    } 
+    }
+    
+    stage('SonarQube') {
+       
+        def scannerHome = tool 'scanner';
+        
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
+        }
+    }
+
     
     docker.image('hello/python:1').inside {
         stage('Test') {
@@ -24,7 +34,7 @@ node {
             cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
         }
     }
-       
+       /*
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -32,7 +42,7 @@ node {
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
-    }
+    } */
 
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
