@@ -1,4 +1,4 @@
-node {/*  
+node {
     stage('Checkout SCM') {
     
         checkout scm
@@ -45,7 +45,7 @@ node {/*
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-python"
-    }  */
+    }
     stage ('Clean') {
        
     }
