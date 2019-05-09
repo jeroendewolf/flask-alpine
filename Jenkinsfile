@@ -47,7 +47,7 @@ node {/*
         sh "kubectl rollout status deployment/hello-python"
     }  */
     stage ('Clean') {
-        sh "curl -v -X DELETE 127.0.0.1:30400/hello-python"
+       
     }
 }
         
