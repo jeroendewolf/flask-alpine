@@ -18,8 +18,10 @@ node {
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
-        
+        sh 'coverage run test_app.py'
+        cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
         withSonarQubeEnv('SonarQube') {
+            
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
         }
     }
@@ -28,10 +30,10 @@ node {
     docker.image('hello/python:1').inside {
         stage('Test') {
             /*sh "rm -f ./coverage.xml"*/
-            sh 'coverage run test_app.py'
+            /* sh 'coverage run test_app.py' */
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
-            cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
+            /*cobertura coberturaReportFile: 'coverage-reports/coverage.xml'*/
         }
     }
        /*
