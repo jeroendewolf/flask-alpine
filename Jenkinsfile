@@ -21,7 +21,7 @@ node {
             sh 'coverage run test_app.py'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
-            cobertura coberturaReportFile: 'coverage.xml'
+            cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
         }
     }
        
