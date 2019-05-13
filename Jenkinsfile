@@ -17,8 +17,9 @@ node {
         
     docker.image('hello/python:1').inside {
         stage('Test') {
-            sh 'coverage run test_app.py'
-            sh 'ls -al'
+            /*sh 'coverage run test_app.py'*/
+            sh 'python test_app.py'
+            /* sh 'ls -al'*/
             sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
