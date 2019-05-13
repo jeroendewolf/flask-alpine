@@ -22,7 +22,7 @@ node {
             sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
-            cobertura coberturaReportFile: 'coverage-reports/coverage.xml'
+            cobertura coberturaReportFile: 'coverage.xml'
         }
     }
     
