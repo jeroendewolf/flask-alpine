@@ -17,8 +17,8 @@ node {
         
     docker.image('hello/python:1').inside {
         stage('Test') {
-            /*sh 'coverage run test_app.py'*/
-            sh 'python test_app.py'
+            sh 'coverage run test_app.py'
+            sh 'coverage xml'
             /* sh 'ls -al'*/
             sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
@@ -51,8 +51,6 @@ node {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-python"
     }
-    stage ('Clean') {
-       
-    }
+
 }
         
