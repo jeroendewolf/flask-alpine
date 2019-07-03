@@ -20,7 +20,7 @@ node {
             sh 'coverage run test_app.py'
             sh 'coverage xml'
             /* sh 'ls -al'*/
-            sh mkdir --p ./coverage-reposts
+            sh 'mkdir --p ./coverage-reposts'
             sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
