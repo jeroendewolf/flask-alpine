@@ -34,7 +34,7 @@ node {
         
         withSonarQubeEnv('SonarQube') {
             
-            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=PythonWebapp -Dsonar.sources=."
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=hello-python -Dsonar.sources=."
         }
     }
 
