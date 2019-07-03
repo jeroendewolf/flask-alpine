@@ -27,7 +27,7 @@ node {
             cobertura coberturaReportFile: 'coverage.xml'
         }
     }
-    
+    /*
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -38,7 +38,7 @@ node {
         }
     }
 
-
+*/
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
        
