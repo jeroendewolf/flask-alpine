@@ -49,7 +49,7 @@ node {
     }
     stage ('Deploy') {
         //minikube_ip = sh "minikube ip"
-        sh "sed 's#127.0.0.1:30400/hello-python:version#192.168.99.101:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl create -f -"
+        sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-python"
     }
 
