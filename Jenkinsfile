@@ -48,11 +48,9 @@ node {
         //sh "docker rmi -f ${imageName}"
     }
     stage ('Deploy') {
-        container('kubectl'){
-          sh "kubectl get pods"
-        }
-        //sh "sed 's#localhost:30400/hello-python:version#localhost:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
-        //sh "kubectl rollout status deployment/hello-python"
+        sh "kubectl get pods"
+        sh "sed 's#localhost:30400/hello-python:version#localhost:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
+        sh "kubectl rollout status deployment/hello-python"
     }
 
 }
