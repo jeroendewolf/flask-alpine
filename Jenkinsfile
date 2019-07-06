@@ -5,7 +5,7 @@ node {
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
         appname = "hello-python:"
-        registryHost = "localhost:30400/"
+        registryHost = "127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
 
         env.BUILD_TAG=tag
@@ -51,7 +51,7 @@ node {
         //sh "kubectl get pods"
         //sh "sed 's#localhost:30400/hello-python:version#localhost:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
         //sh "kubectl rollout status deployment/hello-python"
-        sh "sed 's#localhost:30400/hello-python:version#localhost:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml"
+        sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml"
         kubernetesDeploy configs: "python-deploy.yaml", kubeconfigId: 'hello-python'
     }
 
