@@ -30,7 +30,7 @@ spec:
         tier: hello-python
     spec:
       containers:
-      - image: localhost:30400/hello-python:version
+      - image: 127.0.0.1:30400/hello-python:version
         name: hello-python
         ports:
         - containerPort: 80
