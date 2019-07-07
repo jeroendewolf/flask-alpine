@@ -43,11 +43,13 @@ node {
     
     stage ('Push') {
         sh "docker push ${imageName}"
-        sh "docker rmi -f ${imageName}"
     }
     
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
+    }
+    stage ('Clean') {
+        sh "docker rmi -f hello/python:1"
     }
 
 }
