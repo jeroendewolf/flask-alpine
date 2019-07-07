@@ -19,8 +19,6 @@ node {
         stage('Test') {
             sh 'coverage run test_app.py'
             sh 'coverage xml'
-            /* sh 'ls -al'*/
-            sh 'mkdir --p ./coverage-reposts'
             //sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
@@ -45,14 +43,11 @@ node {
     
     stage ('Push') {
         sh "docker push ${imageName}"
-        //sh "docker rmi -f ${imageName}"
+        sh "docker rmi -f ${imageName}"
     }
+    
     stage ('Deploy') {
-        //sh "kubectl get pods"
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
-        //sh "kubectl rollout status deployment/hello-python"
-        //sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml"
-        //kubernetesDeploy configs: "python-deploy.yaml", kubeconfigId: 'hello-python'
     }
 
 }
