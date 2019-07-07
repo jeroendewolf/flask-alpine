@@ -50,6 +50,7 @@ node {
     }
     stage ('Clean') {
         sh "docker rmi -f hello/python:1"
+        sh "docker rmi -f 127.0.0.1:30400/hello-python"
         sh "docker rmi -f 127.0.0.1:30400/hello-python:'$BUILD_TAG'"
     }
 
