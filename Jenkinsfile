@@ -27,7 +27,7 @@ node {
             cobertura coberturaReportFile: 'coverage.xml'
         }
     }
-
+/*
     stage('SonarQube') {
        
         def scannerHome = tool 'scanner';
@@ -37,7 +37,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=python-pipeline -Dsonar.sources=."
         }
     }
-
+*/
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
        
