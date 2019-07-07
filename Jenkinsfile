@@ -1,13 +1,11 @@
 node {
     stage('Checkout SCM') {
-    
         checkout scm
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
         appname = "hello-python:"
         registryHost = "127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
-
         env.BUILD_TAG=tag
     }
 
@@ -19,7 +17,6 @@ node {
         stage('Test') {
             sh 'coverage run test_app.py'
             sh 'coverage xml'
-            //sh 'cp coverage.xml coverage-reports/coverage.xml'
             sh 'pytest --junitxml=reports/results.xml'
             junit 'reports/*.xml'
             cobertura coberturaReportFile: 'coverage.xml'
@@ -27,18 +24,14 @@ node {
     }
 
     stage('SonarQube') {
-       
         def scannerHome = tool 'scanner';
-        
         withSonarQubeEnv('SonarQube') {
-            
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=python-pipeline -Dsonar.sources=."
         }
     }
 
     stage('Rename image') {
         sh "docker tag hello/python:1 ${imageName}"
-       
     }
     
     stage ('Push') {
@@ -48,10 +41,10 @@ node {
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/hello-python:version#127.0.0.1:30400/hello-python:'$BUILD_TAG'#' python-deploy.yaml | kubectl apply -f -"
     }
+    
     stage ('Clean') {
         sh "docker rmi -f hello/python:1"
         sh "docker rmi -f ${imageName}"
     }
-
 }
         
