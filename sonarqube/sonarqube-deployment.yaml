@@ -11,7 +11,7 @@ spec:
         name: sonarqube
     spec:
       containers:
-        - image: sonarqube:alpine
+        - image: sonarqube:7.7-community
           args:
             - -Dsonar.web.context=/sonar
           name: sonarqube
