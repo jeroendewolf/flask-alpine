@@ -1,37 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-python
+  name: flask-alpine
   labels:
-    app: hello-python
+    app: flask-alpine
 spec:
   ports:
     - port: 80
       targetPort: 5000
   selector:
-    app: hello-python
-    tier: hello-python
+    app: flask-alpine
+    tier: flask-alpine
   type: NodePort
 
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-python
+  name: flask-alpine
   labels:
-    app: hello-python
+    app: flask-alpine
 spec:
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hello-python
-        tier: hello-python
+        app: flask-alpine
+        tier: flask-alpine
     spec:
       containers:
-      - image: 127.0.0.1:30400/hello-python:version
-        name: hello-python
+      - image: 127.0.0.1:30400/flask-alpine:version
+        name: flask-alpine
         ports:
         - containerPort: 80
-          name: hello-python
+          name: flask-alpine
