@@ -21,4 +21,3 @@ if __name__ == '__main__':
   import xmlrunner
   runner = xmlrunner.XMLTestRunner(output='reports')
   unittest.main(testRunner=runner)
-  #unittest.main()
