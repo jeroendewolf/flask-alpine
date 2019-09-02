@@ -39,7 +39,7 @@ node {
     }
     
     stage ('Deploy') {
-        sh "sed 's#127.0.0.1:30400/flask-alpine:version#127.0.0.1:30400/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
+        sh "sed 's#127.0.0.1:30400/flask-alpine:version#127.0.0.1:30400/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl create -f -"
     }
     
     stage ('Clean') {
