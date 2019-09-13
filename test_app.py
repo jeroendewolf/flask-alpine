@@ -10,12 +10,12 @@ class TestApp(unittest.TestCase):
     self.app = app.app.test_client()
   
   def test_hello(self):
-    self.assertTrue(hello() == "Hello Class!")
+    self.assertTrue(hello() == "Hello World!")
     
   def test_hello_serv(self):
     rv = self.app.get('/')
     self.assertEqual(rv.status, '200 OK')
-    self.assertEqual(rv.data, b'Hello Class!')
+    self.assertEqual(rv.data, b'Hello World!')
  
 if __name__ == '__main__':
   import xmlrunner
