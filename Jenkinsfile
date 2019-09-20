@@ -29,7 +29,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-
+    /*
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
@@ -46,5 +46,6 @@ node {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
     }
+    */
 }
         
