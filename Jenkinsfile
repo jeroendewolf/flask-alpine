@@ -8,11 +8,11 @@ node {
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
     }
-
+/*
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
     }
-        
+ */       
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'coverage run test_app.py'
