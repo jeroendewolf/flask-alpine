@@ -10,7 +10,7 @@ node {
     }
 
     stage ('Build') {
-        sh "sudo docker build -t flask-alpine:1 ."
+        sh "su -l root docker build -t flask-alpine:1 ."
     }
 /*
     docker.image('flask-alpine:1').inside {
