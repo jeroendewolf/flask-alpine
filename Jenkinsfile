@@ -8,7 +8,7 @@ node {
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
     }
-/*
+
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
     }
@@ -22,7 +22,7 @@ node {
             cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
-   */     
+ /*    
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
