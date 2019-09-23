@@ -10,9 +10,9 @@ node {
     }
 
     stage ('Build') {
-        sh "docker build -t flask-alpine:1 ."
+        sh "sudo docker build -t flask-alpine:1 ."
     }
-    
+/*
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'coverage run test_app.py'
@@ -22,7 +22,7 @@ node {
             cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
- /*    
+  
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
