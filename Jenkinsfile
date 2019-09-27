@@ -29,7 +29,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-  */  
+  
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
@@ -37,7 +37,7 @@ node {
     stage ('Push') {
         sh "docker push ${imageName}"
     }
-    
+   */
     stage ('Deploy') {
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
     }
