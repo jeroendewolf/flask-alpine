@@ -12,7 +12,7 @@ node {
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
     }
-/*
+
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'coverage run test_app.py'
@@ -22,14 +22,14 @@ node {
             cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
-  
+  /*
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-    /*
+  */  
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
@@ -39,9 +39,9 @@ node {
     }
     
     stage ('Deploy') {
-        sh "sed 's#127.0.0.1:30400/flask-alpine:version#127.0.0.1:30400/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
+        sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
     }
-    
+    /*
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
