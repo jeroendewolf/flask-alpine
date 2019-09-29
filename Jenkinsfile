@@ -35,7 +35,9 @@ node {
     }
     
     stage ('Push') {
-        sh "docker push ${imageName}"
+        withRegistry('https://hub.docker.com', 'docker_login'){
+            sh "docker push ${imageName}"
+        }
     }
    
     stage ('Deploy') {
