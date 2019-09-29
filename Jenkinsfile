@@ -4,6 +4,7 @@ node {
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
         appname = "flask-alpine:"
+        // registryHost name modified to use DockerHub
         registryHost = "wolfjde/" //"127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
@@ -22,25 +23,27 @@ node {
             cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
-  /*
+  
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-  */
+  
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
     
     stage ('Push') {
+        // modified to use DockerHub
         docker.withRegistry('', 'dockerhub'){
             sh "docker push ${imageName}"
         }
     }
    
     stage ('Deploy') {
+        // modified to use DockerHub
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
     }
     
