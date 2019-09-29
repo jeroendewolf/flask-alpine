@@ -35,7 +35,7 @@ node {
     }
     
     stage ('Push') {
-        docker.withRegistry('index.docker.io', 'docker_login'){
+        docker.withRegistry('https://index.docker.io', 'docker_login'){
             sh "docker push ${imageName}"
         }
     }
