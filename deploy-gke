@@ -1,1 +1,21 @@
-test
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-alpine
+  labels:
+    app: flask-alpine
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: flask-alpine
+        tier: flask-alpine
+    spec:
+      containers:
+      - image: 127.0.0.1:30400/flask-alpine:version
+        name: flask-alpine
+        ports:
+        - containerPort: 80
+          name: flask-alpine
