@@ -9,7 +9,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: jenkins
+      app: flask-alpine
   strategy:
     rollingUpdate:
       maxSurge: 25%
