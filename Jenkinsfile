@@ -47,7 +47,7 @@ node {
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
         // custom for gke
         //sh "kubectl apply -f sa-gke.yaml"
-        sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
+        //sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl apply -f -"
         
     }
