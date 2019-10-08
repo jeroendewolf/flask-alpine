@@ -53,15 +53,13 @@ node {
         //sh "kubectl create deployment flask-alpine --image=gcr.io/ci-cd-pipeline-255118/flask-alpine:$BUILD_TAG"
    // }
     stage('Deploy Production') {
-            steps{
-                step([$class: 'KubernetesEngineBuilder', 
+            $class: 'KubernetesEngineBuilder', 
                         projectId: "flask-alpine",
                         clusterName: "ci-cd-cluster",
                         zone: "europe-west1-c",
                         manifestPattern: 'k8s/production/',
                         credentialsId: "gke-service-account",
-                        verifyDeployments: true])
-            }
+                        verifyDeployments: true
         }
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
