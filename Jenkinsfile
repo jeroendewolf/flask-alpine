@@ -42,17 +42,27 @@ node {
         }
     }
    
-    stage ('Deploy') {
+   // stage ('Deploy') {
         // modified to use DockerHub
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
         // custom for gke
         //sh "kubectl apply -f sa-gke.yaml"
         //sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
-        sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl apply -f -"
+   //     sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl apply -f -"
         //sh "kubectl config set-context default --namespace=default"
         //sh "kubectl create deployment flask-alpine --image=gcr.io/ci-cd-pipeline-255118/flask-alpine:$BUILD_TAG"
-    }
-    
+   // }
+    stage('Deploy Production') {
+            steps{
+                step([$class: 'KubernetesEngineBuilder', 
+                        projectId: "flask-alpine",
+                        clusterName: "ci-cd-cluster",
+                        zone: "europe-west1-c",
+                        manifestPattern: 'k8s/production/',
+                        credentialsId: "gke-service-account",
+                        verifyDeployments: true])
+            }
+        }
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
