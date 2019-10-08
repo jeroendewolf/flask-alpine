@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-alpine
+  namespace: default
   labels:
     app: flask-alpine
 spec:
