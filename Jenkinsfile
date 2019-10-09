@@ -46,11 +46,10 @@ node {
         // modified to use DockerHub
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
         // custom for gke
-        // sh "kubectl --kubeconfig kubeconfig.yaml apply -f ./deploy-gke.yaml"
+         sh "kubectl --kubeconfig kubeconfig.yaml get nodes"
         // sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
         //sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl --kubeconfig kubeconfig.yaml apply -f -"
-        // sh "kubectl config set-context default --namespace=default"
-        sh "kubectl create deployment --kubeconfig kubeconfig.yaml flask-alpine --image=wolfjde/flask-alpine:$BUILD_TAG"
+        //sh "kubectl create deployment --kubeconfig kubeconfig.yaml flask-alpine --image=wolfjde/flask-alpine:$BUILD_TAG"
         
     }
  /*   stage('Deploy Production') {
