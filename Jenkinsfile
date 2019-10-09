@@ -51,7 +51,7 @@ node {
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl apply -f -"
         // sh "kubectl config set-context default --namespace=default"
         // sh "kubectl create deployment flask-alpine --image=gcr.io/ci-cd-pipeline-255118/flask-alpine:$BUILD_TAG"
-   // }
+    }
  /*   stage('Deploy Production') {
             $class: 'KubernetesEngineBuilder', 
                         projectId: "flask-alpine",
