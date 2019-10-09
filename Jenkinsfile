@@ -46,7 +46,7 @@ node {
         // modified to use DockerHub
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
         // custom for gke
-         sh "kubectl --kubeconfig kubeconfig.yaml apply -f https://github.com/jeroendewolf/flask-alpine/master/deploy-gke.yaml"
+         sh "kubectl --kubeconfig kubeconfig.yaml apply -f https://raw.githubusercontent.com/jeroendewolf/flask-alpine/master/deploy-gke.yaml"
         // sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
         // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl apply -f -"
         // sh "kubectl config set-context default --namespace=default"
