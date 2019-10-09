@@ -50,7 +50,7 @@ node {
         // sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
         //sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl --kubeconfig kubeconfig.yaml apply -f -"
         // sh "kubectl config set-context default --namespace=default"
-        sh "kubectl create deployment --kubeconfig kubeconfig.yaml flask-alpine --image=gcr.io/ci-cd-pipeline-255118/flask-alpine:$BUILD_TAG"
+        sh "kubectl create deployment --kubeconfig kubeconfig.yaml flask-alpine --image=wolfjde/flask-alpine:$BUILD_TAG"
         
     }
  /*   stage('Deploy Production') {
