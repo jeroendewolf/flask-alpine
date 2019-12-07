@@ -44,7 +44,10 @@ node {
    
     stage ('Deploy') {
         // modified to use DockerHub
-        sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
+        withCredentials([usernamePassword(credentialsId: 'jeroendwolf', passwordVariable: 'jeroendewolf', usernameVariable: 'jeroendewolf')]) {
+            sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
+        }
+        // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
         
         // custom for gke
         // sh "kubectl --kubeconfig kubeconfig.yaml get nodes"
