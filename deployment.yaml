@@ -14,20 +14,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-alpine
-  namespace: app
+  namespace: flask-alpine
   labels:
     app: flask-alpine
 spec:
   selector:
-  matchLabels:
-    app: flask-alpine
-    tier: flask-alpine
-  strategy:
-    type: Recreate
+    matchLabels:
+      app: flask-alpine
+      tier: flask-alpine
   template:
     metadata:
-        app: flask-alpine
-        tier: flask-alpine
+        name: flask-alpine
+        namespace: flask-alpine
+        labels: 
+          app: flask-alpine
+          tier: flask-alpine
     spec:
       containers:
       - image: 127.0.0.1:30400/flask-alpine:version
