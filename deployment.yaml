@@ -21,6 +21,10 @@ metadata:
   labels:
     app: flask-alpine
 spec:
+  selector:
+  matchLabels:
+    app: flask-alpine
+    tier: flask-alpine
   strategy:
     type: Recreate
   template:
