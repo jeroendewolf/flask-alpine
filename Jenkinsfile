@@ -44,28 +44,10 @@ node {
    
     stage ('Deploy') {
         // modified to use DockerHub
-        withCredentials([usernamePassword(credentialsId: 'jeroendwolf', passwordVariable: 'jeroendewolf', usernameVariable: 'jeroendewolf')]) {
-            sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
-        }
-        // sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -f -"
-        
-        // custom for gke
-        // sh "kubectl --kubeconfig kubeconfig.yaml get nodes"
-        // sh "kubectl config set-context $(kubectl config current-context) --namespace=default"
-        //sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deploy-gke.yaml | kubectl --kubeconfig kubeconfig.yaml apply -f -"
-        //sh "kubectl create deployment --kubeconfig kubeconfig.yaml flask-alpine --image=wolfjde/flask-alpine:$BUILD_TAG"
+        sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
- /*   stage('Deploy Production') {
-            $class: 'KubernetesEngineBuilder', 
-                        projectId: "flask-alpine",
-                        clusterName: "ci-cd-cluster",
-                        zone: "europe-west1-c",
-                        manifestPattern: 'k8s/production/',
-                        credentialsId: "gke-service-account",
-                        verifyDeployments: true
-        }
-  */
+    
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
