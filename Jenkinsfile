@@ -44,7 +44,7 @@ node {
    
     stage ('Deploy') {
         // modified to use DockerHub
-        sh "kubectl create namespace flask-alpine"
+        //sh "kubectl create namespace flask-alpine"
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
