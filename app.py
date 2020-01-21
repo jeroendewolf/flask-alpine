@@ -12,21 +12,21 @@ def helloJson1():
 @app.route('/xml')
 def helloXml():
     xmlMsg = "Hello XML!"
-    r = flask.make_response( xmlMsg )
+    r = app.make_response( xmlMsg )
     r.mimetype = 'application/xml'
     return r
 
 @app.route('/html')
 def helloHtml():
     htmlMsg = "<html><head></head><body>Hello HTML!</body></html>"
-    r = flask.make_response( htmlMsg )
+    r = app.make_response( htmlMsg )
     r.mimetype = 'text/html'
     return r
 
 @app.route('/json2')
 def helloJson2():
     jsonMsg = "Hello JSON2!"
-    r = flask.make_response( jsonMsg )
+    r = app.make_response( jsonMsg )
     r.mimetype = 'application/json'
     return r
 
