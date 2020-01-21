@@ -6,26 +6,23 @@ app = Flask(__name__)
 
 @app.route('/json1')
 def helloJson1():
-    jsonmsg = 'Hello JSON!'
-    return jsonify(jsonmsg)
+    jsonMsg = 'Hello JSON1!'
+    return jsonify(jsonMsg)
 
 @app.route('/xml')
 def helloXml():
     xmlMsg = "Hello XML!"
-    header("Content-type: text/xml")
-    return xmlMsg
+    return Response(xmlMsg, mimetype='text/xml')
 
 @app.route('/html')
 def helloHtml():
     htmlMsg = "<html><head></head><body>Hello HTML!</body></html>"
-    header("Content-type: text/html")
-    return htmlMsg
+    return Response(htmlMsg, mimetype='text/html')
 
 @app.route('/json2')
 def helloJson2():
-    htmlMsg = "Hello JSON2!"
-    header("Content-type: application/json")
-    return htmlMsg
+    jsonMsg = "Hello JSON2!"
+    return Response(jsonMsg, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
