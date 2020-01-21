@@ -31,10 +31,10 @@ def helloJson2():
     return r
 
 @app.route('/pdf')
-def jpg_to_pdf(name):
+def jpg_to_pdf():
     pdf = FPDF()
     pdf.add_page()
-    pdf.image(os.path.join(app.instance_path, name + '.jpg'), 50, 50)
+    pdf.image(os.path.join(app.instance_path,  + 'wolf.jpg'), 150, 150)
     response = make_response(pdf.output(dest='S').encode('latin-1'))
     response.headers.set('Content-Disposition', 'attachment', filename=name + '.pdf')
     response.headers.set('Content-Type', 'application/pdf')
