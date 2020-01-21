@@ -12,7 +12,7 @@ def helloJson1():
 
 @app.route('/xml')
 def helloXml():
-    xmlMsg = "<xml>Hello XML!</xml>"
+    xmlMsg = "<xml>Hello Wolf!</xml>"
     r = app.make_response( xmlMsg )
     r.mimetype = 'application/xml'
     return r
