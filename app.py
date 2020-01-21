@@ -5,7 +5,7 @@ from flask import jsonify
 app = Flask(__name__)
 
 @app.route('/json1')
-def helloJson():
+def helloJson1():
     jsonmsg = 'Hello JSON!'
     return jsonify(jsonmsg)
 
@@ -16,13 +16,13 @@ def helloXml():
     return xmlMsg
 
 @app.route('/html')
-df helloHtml():
+def helloHtml():
     htmlMsg = "<html><head></head><body><input type="BUTTON" value="Hello HTML!"></body></html>"
     header("Content-type: text/xml")
     return htmlMsg
 
 @app.route('/json2')
-df helloHtml():
+def helloJson2():
     htmlMsg = "Hello JSON2!"
     header("Content-type: application/json")
     return htmlMsg
