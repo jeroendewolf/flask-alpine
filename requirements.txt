@@ -2,3 +2,4 @@ Flask
 xmlrunner
 pytest
 coverage
+fpdf
