@@ -30,5 +30,15 @@ def helloJson2():
     r.mimetype = 'application/json'
     return r
 
+@app.route('/pdf')
+def jpg_to_pdf(name):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.image(os.path.join(app.instance_path, name + '.jpg'), 50, 50)
+    response = make_response(pdf.output(dest='S').encode('latin-1'))
+    response.headers.set('Content-Disposition', 'attachment', filename=name + '.pdf')
+    response.headers.set('Content-Type', 'application/pdf')
+    return response
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
