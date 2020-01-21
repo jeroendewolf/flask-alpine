@@ -37,7 +37,7 @@ def jpg_to_pdf():
     pdf.add_page()
     pdf.image('wolf.jpg', 150, 150)
     response = app.make_response(pdf.output(dest='S').encode('latin-1'))
-    response.headers.set('Content-Disposition', 'attachment', 'wolf.pdf')
+    response.headers.set('Content-Disposition', 'attachment', filename='wolf.pdf')
     response.headers.set('Content-Type', 'application/pdf')
     return response
 
