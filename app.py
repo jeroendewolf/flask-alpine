@@ -17,8 +17,8 @@ def helloXml():
 
 @app.route('/html')
 def helloHtml():
-    htmlMsg = "<html><head></head><body><input type="BUTTON" value="Hello HTML!"></body></html>"
-    header("Content-type: text/xml")
+    htmlMsg = "<html><head></head><body>Hello HTML!</body></html>"
+    header("Content-type: text/html")
     return htmlMsg
 
 @app.route('/json2')
