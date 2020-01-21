@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import Response
 from flask import jsonify
+from fpdf import FPDF
 
 app = Flask(__name__)
 
