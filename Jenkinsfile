@@ -42,7 +42,7 @@ node {
             sh "docker push ${imageName}"
         }
     }
-   /*
+   
     stage ('Deploy') {
         // modified to use DockerHub
         //sh "kubectl create namespace flask-alpine"
@@ -54,6 +54,6 @@ node {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
     }
-    */
+    
 }
         
