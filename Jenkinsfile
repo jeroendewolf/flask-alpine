@@ -35,6 +35,7 @@ node {
  */
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
+        sh "echo ${imageName}"
     }
     
     stage ('Push') {
