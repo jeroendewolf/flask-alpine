@@ -1,9 +1,9 @@
 node {
     stage('Checkout SCM') {
         checkout scm
-        // sh "git rev-parse --short HEAD > commit-id"
+        sh "git rev-parse --short HEAD > commit-id"
         //tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-        tag = sh "git rev-parse --short HEAD"
+        //tag = sh "git rev-parse --short HEAD"
         appname = "flask-alpine:"
         // registryHost name modified to use DockerHub
         registryHost = "wolfjde/" //"127.0.0.1:30400/"
