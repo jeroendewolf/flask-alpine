@@ -3,11 +3,9 @@ node {
         checkout scm
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-        //tag = sh "git rev-parse --short HEAD"
         appname = "flask-alpine:"
         // registryHost name modified to use DockerHub
         registryHost = "wolfjde/" //"127.0.0.1:30400/"
-        sh "echo ${tag}"
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
     }
@@ -36,7 +34,6 @@ node {
  */
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
-        sh "echo ${imageName}"
     }
     
     stage ('Push') {
@@ -45,14 +42,14 @@ node {
             sh "docker push ${imageName}"
         }
     }
-   /*
+   
     stage ('Deploy') {
         // modified to use DockerHub
         // sh "kubectl create namespace flask-alpine"
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
-   */ 
+   
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
