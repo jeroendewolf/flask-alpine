@@ -13,7 +13,7 @@ node {
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
     }
-/*
+
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'coverage run test_app.py'
@@ -31,7 +31,7 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
- */
+ 
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
