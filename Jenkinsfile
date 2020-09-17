@@ -36,21 +36,21 @@ node {
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
-    /*
+    
     stage ('Push') {
         // modified to use DockerHub
         docker.withRegistry('', 'dockerhub'){
             sh "docker push ${imageName}"
         }
     }
-   */
+   /*
     stage ('Deploy') {
         // modified to use DockerHub
         // sh "kubectl create namespace flask-alpine"
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
-    
+   */ 
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
