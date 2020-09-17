@@ -10,7 +10,7 @@ class TestApp(unittest.TestCase):
     self.app = app.app.test_client()
 
   def test_hello(self):
-    self.assertTrue(hello() == "Hello KPN!")
+    self.assertTrue(hello() == "Hello Keylane!")
 
   def test_hello_serv(self):
     rv = self.app.get('/')
