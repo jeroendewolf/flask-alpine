@@ -13,17 +13,18 @@ node {
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
     }
-    
+    // Requires the Docker-pipeline plugin to be installed
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'pytest --junitxml=reports/results.xml'
+            junit 'reports/*.xml'
             // sh 'coverage run test_app.py'
             // sh 'coverage xml -o coverage-reports/coverage-.xml'
             // junit 'reports/*.xml'
             // cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
-    
+    // Requires the SonarQube plugin and a scanner to be configured in Jenkins System & Global Tool Configuration
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
