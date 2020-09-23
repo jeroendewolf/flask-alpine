@@ -17,10 +17,9 @@ node {
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'pytest --junitxml=reports/results.xml'
-            junit 'reports/*.xml'
-            // sh 'coverage run test_app.py'
-            // sh 'coverage xml -o coverage-reports/coverage-.xml'
-            // junit 'reports/*.xml'
+            junit 'reports/*.xml' // after this, test results are shown in jenkins
+            sh 'coverage run test_app.py'
+            sh 'coverage xml -o coverage-reports/coverage-.xml'
             // cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
