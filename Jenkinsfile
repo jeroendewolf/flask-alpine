@@ -20,7 +20,7 @@ node {
             junit 'reports/*.xml' // after this, test results are shown in jenkins
             sh 'coverage run test_app.py'
             sh 'coverage xml -o coverage-reports/coverage-.xml'
-            // cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
+            cobertura coberturaReportFile: 'coverage-reports/coverage-.xml'
         }
     }
     // Requires the SonarQube plugin and a scanner to be configured in Jenkins System & Global Tool Configuration
