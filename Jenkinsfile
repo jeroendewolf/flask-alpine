@@ -48,11 +48,11 @@ node {
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
-   
+   */
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
     }
-    */
+    
 }
         
