@@ -30,11 +30,11 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-    /*
+    
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
-    
+    /*
     stage ('Push') {
         // modified to use DockerHub
         docker.withRegistry('', 'dockerhub'){
