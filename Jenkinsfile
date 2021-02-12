@@ -24,12 +24,14 @@ node {
         }
     }
     // Requires the SonarQube plugin and a scanner to be configured in Jenkins System & Global Tool Configuration
+    /*
     stage('SonarQube') {
         def scannerHome = tool 'scanner';
         withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
+    
     
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
@@ -48,7 +50,7 @@ node {
         sh "sed 's#127.0.0.1:30400/flask-alpine:version#wolfjde/flask-alpine:'$BUILD_TAG'#' deployment.yaml | kubectl apply -n flask-alpine -f -"
         
     }
-   
+   */
     stage ('Clean') {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
