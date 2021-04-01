@@ -2,16 +2,11 @@
 import unittest
 import app
 from app import hello
-from app import ip
-
 
 class TestApp(unittest.TestCase):
   def setUp(self):
     app.app.testing=True
     self.app = app.app.test_client()
-    
-  def test_ip(self):
-    self.assertTrue(ip=='0.0.0.0')
 
   def test_hello(self):
     self.assertTrue(hello() == "Hello KPN!")
