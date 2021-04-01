@@ -2,6 +2,7 @@
 import unittest
 import app
 from app import hello
+from app import ip
 
 
 class TestApp(unittest.TestCase):
