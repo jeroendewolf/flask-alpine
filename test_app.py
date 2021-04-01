@@ -9,7 +9,7 @@ class TestApp(unittest.TestCase):
     app.app.testing=True
     self.app = app.app.test_client()
     
-  def test ip(self):
+  def test_ip(self):
     self.assertTrue(ip=='0.0.0.0')
 
   def test_hello(self):
