@@ -8,20 +8,10 @@ node {
         registryHost = "wolfjde/" //"127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
-echo GIT_COMMIT %GIT_COMMIT% 
-echo GIT_BRANCH %GIT_BRANCH%
-echo GIT_LOCAL_BRANCH %GIT_LOCAL_BRANCH%
-echo GIT_PREVIOUS_COMMIT %GIT_PREVIOUS_COMMIT%
-echo GIT_PREVIOUS_SUCCESSFUL_COMMIT %GIT_PREVIOUS_SUCCESSFUL_COMMIT%
-echo GIT_URL %GIT_URL%
-echo GIT_URL_N - %GIT_URL_N%
-echo GIT_AUTHOR_NAME %GIT_AUTHOR_NAME%
-echo GIT_COMMITTER_EMAIL %GIT_COMMITTER_EMAIL%
     }
 
     stage ('Build') {
         sh "docker build -t flask-alpine:1 ."
-        //docker.build("flask-alpine:1", ".")
     }
     // Requires the Docker-pipeline plugin to be installed
     docker.image('flask-alpine:1').inside {
