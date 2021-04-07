@@ -11,8 +11,8 @@ node {
     }
 
     stage ('Build') {
-        //sh "docker build -t flask-alpine:1 ."
-        docker.build("flask-alpine:1", ".")
+        sh "docker build -t flask-alpine:1 ."
+        //docker.build("flask-alpine:1", ".")
     }
     // Requires the Docker-pipeline plugin to be installed
     docker.image('flask-alpine:1').inside {
