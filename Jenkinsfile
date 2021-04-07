@@ -8,6 +8,8 @@ node {
         registryHost = "wolfjde/" //"127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
+        echo env.GIT_COMMIT
+        echo tag
     }
 
     stage ('Build') {
