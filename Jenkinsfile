@@ -36,7 +36,7 @@ node {
     */
     stage('Anchore analyse') {
 
-        writeFile file: 'anchore_images', text: 'wolfjde/flask-alpine:latest'
+        writeFile file: 'anchore_images', text: 'wolfjde/flask-alpine:2603d45'
         anchore name: 'anchore_images'
     }
     /*
