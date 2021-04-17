@@ -32,6 +32,11 @@ node {
         }
     }
     
+    stage('Anchore analyse') {
+
+        writeFile file: 'anchore_images', text: 'wolfjde/flask-alpine'
+        anchore name: 'anchore_images'
+    }
     
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
