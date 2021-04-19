@@ -15,7 +15,7 @@ node {
     }
     
     // Requires the Docker-pipeline plugin to be installed
-    /*
+    
     docker.image('flask-alpine:1').inside {
         stage('Test') {
             sh 'pytest --junitxml=reports/results.xml'
@@ -33,13 +33,13 @@ node {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=flask-alpine -Dsonar.sources=."
         }
     }
-    */
+    /*
     stage('Anchore analyse') {
 
         writeFile file: 'anchore_images', text: 'wolfjde/flask-alpine:2603d45'
         anchore name: 'anchore_images'
     }
-    /*
+    */
     stage('Rename image') {
         sh "docker tag flask-alpine:1 ${imageName}"
     }
@@ -62,6 +62,6 @@ node {
         sh "docker rmi -f flask-alpine:1"
         sh "docker rmi -f ${imageName}"
     }
-    */
+    
 }
         
